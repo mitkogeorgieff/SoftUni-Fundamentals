@@ -1,4 +1,5 @@
 miner_dictionary = {}
+
 while True:
     resource = input()
 

@@ -1,5 +1,6 @@
 items_dictionary = {}
 legendary_item = False
+
 while True:
     items = input().split(' ')
 
@@ -33,18 +34,7 @@ while True:
         break
 
 key_materials = ['motes', 'shards', 'fragments']
-# try:
-#     print(f'shards: {items_dictionary["shards"]}')
-# except KeyError:
-#     print('shards: 0')
-# try:
-#     print(f'fragments: {items_dictionary["fragments"]}')
-# except KeyError:
-#     print('fragments: 0')
-# try:
-#     print(f'motes: {items_dictionary["motes"]}')
-# except KeyError:
-#     print('motes: 0')
+
 if 'shards' in items_dictionary:
     print(f'shards: {items_dictionary["shards"]}')
 elif 'shards' not in items_dictionary:
