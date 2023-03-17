@@ -7,5 +7,5 @@ def replace_repeating_characters(string):
             print(char, end='')
 
 
-string = input()
-replace_repeating_characters(string)
+text = input()
+replace_repeating_characters(text)

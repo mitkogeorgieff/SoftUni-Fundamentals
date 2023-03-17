@@ -1,23 +1,13 @@
-def string_explosion(string):
-    result = ''
-    what_left = 0
-    for letter in string:
-        if len(letter) > 1 and any(map(str.isdigit, letter)):
-            what_left += (int(letter[0]) - 1)
-            if what_left >= len(letter):
-                result += ">"
-            else:
-                result += ">" + letter[1 + what_left:]
-                what_left = 0
-        elif len(letter) == 1 and letter.isdigit():
-            if int(letter) > 1:
-                what_left += (int(letter) - 1)
-            result += ">"
-        else:
-            result += letter
+text = input().split(">")
+previous = 0
+result = [text[0]]
 
-    return result
+for part in text[1:]:
+    power = int(part[0])
+    previous += power
 
+    formatted_path = part[previous:]
+    previous = max(previous - len(part), 0)
+    result.append(formatted_path)
 
-string = input().split(">")
-print(string_explosion(string))
+print('>'.join(result))
