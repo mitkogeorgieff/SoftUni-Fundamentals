@@ -3,7 +3,7 @@ def reverse_string(string: str):
     return f'{string} = {reversed_string}'
 
 
-string = input()
-while string != "end":
-    print(reverse_string(string))
-    string = input()
+word = input()
+while word != "end":
+    print(reverse_string(word))
+    word = input()
