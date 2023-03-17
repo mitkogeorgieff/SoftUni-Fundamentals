@@ -12,5 +12,5 @@ def digits_letters_characters(string):
     return f'{digits}\n{letters}\n{characters}'
 
 
-string = input()
-print(digits_letters_characters(string))
+text = input()
+print(digits_letters_characters(text))

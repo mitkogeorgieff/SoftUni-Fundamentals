@@ -1,11 +1,11 @@
-def substring(remove_string, main_string):
-    final_string = main_string
-    while remove_string in final_string:
-        final_string = final_string.replace(remove_string, '')
+def substring(first_string, string):
+    second_string = string
+    while first_string in second_string:
+        second_string = second_string.replace(first_string, '')
 
-    return final_string
+    return second_string
 
 
-first_string = input()
-second_string = input()
-print(substring(first_string, second_string))
+first = input()
+second = input()
+print(substring(first, second))

@@ -7,6 +7,6 @@ def text_filter(filter_words, string):
 
 
 banned_words = input().split(', ')
-string = input()
+text = input()
 
-print(text_filter(banned_words, string))
+print(text_filter(banned_words, text))
