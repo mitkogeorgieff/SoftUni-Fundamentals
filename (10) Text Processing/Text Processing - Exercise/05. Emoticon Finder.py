@@ -4,5 +4,5 @@ def emoticon_finder(string):
             print(f'{char}{string[index + 1]}')
 
 
-string = input()
-emoticon_finder(string)
+text = input()
+emoticon_finder(text)

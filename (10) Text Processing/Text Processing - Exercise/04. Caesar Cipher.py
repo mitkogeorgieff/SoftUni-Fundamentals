@@ -1,9 +1,9 @@
-def caesar_cipher(string):
+def ecode_text(string):
     result = ''
     for char in string:
-         result += chr(ord(char) + 3)
+        result += chr(ord(char) + 3)
     return result
 
 
-string = input()
-print(caesar_cipher(string))
+text = input()
+print(ecode_text(text))
