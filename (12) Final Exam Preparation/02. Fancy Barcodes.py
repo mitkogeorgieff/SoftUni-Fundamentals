@@ -1,20 +1,31 @@
 import re
 
 pattern = r"(@[#]+)([A-Z]([a-zA-Z0-9]{4,})[A-Z])(@[#]+)"
-digits_group = r"(\d+)"
+digits_group = r"\d"
 
+# Get the number of barcodes from the user
 number_barcodes = int(input())
 
-for barcodes in range(number_barcodes):
-    digits_product_group = '00'
+# Loop through each barcode and extract the product group number
+for _ in range(number_barcodes):
+    # Get the barcode from the user
     barcode = input()
-    fancy_barcode = re.findall(pattern, barcode)
-    if fancy_barcode:
-        numbers_in_barcode = fancy_barcode[0][1]
-        product_group = re.findall(digits_group, numbers_in_barcode)
-        if product_group:
-            digits_product_group = ''.join(product_group)
-        print(f"Product group: {digits_product_group}")
+
+    # If the barcode matches the pattern, extract the product group number
+    if re.match(pattern, barcode):
+        # Find all digit characters in the barcode
+        digits = re.findall(digits_group, barcode)
+
+        # If there are digit characters in the barcode, concatenate them to form the product group number
+        if digits:
+            product_group = ''.join(digits)
+        else:
+            # If there are no digit characters in the barcode, set the product group number to "00"
+            product_group = '00'
+
+        # Print the product group number
+        print(f"Product group: {product_group}")
+
+    # If the barcode does not match the pattern, print an error message
     else:
         print("Invalid barcode")
-        
