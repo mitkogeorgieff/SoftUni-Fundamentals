@@ -1,46 +1,62 @@
+data = input()
 cities = {}
 
-command = input()
-while command != "Sail":
-    city, population, gold = command.split("||")
+# Loop through each city and add its population and gold to the cities dictionary
+while data != "Sail":
+    # Split the input data into city name, population, and gold values
+    split_data = data.split("||")
+    city = split_data[0]
+    population = int(split_data[1])
+    gold = int(split_data[2])
+
+    # If the city is not already in the dictionary, add it
     if city not in cities:
-        cities[city] = [int(population), int(gold)]
+        cities[city] = {"population": population, "gold": gold}
+    # If the city is already in the dictionary, update its population and gold values
     else:
-        cities[city][0] += int(population)
-        cities[city][1] += int(gold)
+        cities[city]["population"] += population
+        cities[city]["gold"] += gold
 
-    command = input()
+    # Get the next city data from the user
+    data = input()
 
-text = input()
-while text != "End":
-    event = text.split("=>")
+data = input()
+while data != "End":
+    # Split the input data into command and city values
+    split_data = data.split("=>")
+    command = split_data[0]
+    city = split_data[1]
 
-    if event[0] == "Plunder":
-        town = event[1]
-        people = int(event[2])
-        gold = int(event[3])
-        cities[town][0] -= people
-        cities[town][1] -= gold
-        print(f"{town} plundered! {gold} gold stolen, {people} citizens killed.")
-        if cities[town][0] <= 0 or cities[town][1] <= 0:
-            del cities[town]
-            print(f"{town} has been wiped off the map!")
+    # If the command is "Plunder", reduce the city's population and gold and print a message
+    if command == "Plunder":
+        people = int(split_data[2])
+        gold = int(split_data[3])
 
-    elif event[0] == "Prosper":
-        town = event[1]
-        gold = int(event[2])
-        if gold < 0:
+        cities[city]["population"] -= people
+        cities[city]["gold"] -= gold
+
+        print(f"{city} plundered! {gold} gold stolen, {people} citizens killed.")
+
+        # If the city's population or gold drops to 0 or below, remove it from the cities dictionary and print a message
+        if cities[city]["population"] <= 0 or cities[city]["gold"] <= 0:
+            del cities[city]
+            print(f"{city} has been wiped off the map!")
+
+    # If the command is "Prosper", add gold to the city's gold value (if it's not negative) and print a message
+    elif command == "Prosper":
+        gold = int(split_data[2])
+        if gold >= 0:
+            cities[city]["gold"] += gold
+            print(f"{gold} gold added to the city treasury. {city} now has {cities[city]['gold']} gold.")
+        else:
             print("Gold added cannot be a negative number!")
-        elif gold >= 0:
-            cities[town][1] += gold
-            print(f"{gold} gold added to the city treasury. {town} now has {cities[town][1]} gold.")
 
-    text = input()
+    # Get the next command from the user
+    data = input()
 
-if len(cities):
-    print(f"Ahoy, Captain! There are {len(cities)} wealthy settlements to go to:")
-    for current_city, people_gold in cities.items():
-        print(current_city, "->", "Population:", people_gold[0], "citizens,", "Gold:", people_gold[1], "kg")
-else:
+if not cities:
     print("Ahoy, Captain! All targets have been plundered and destroyed!")
-    
+else:
+    print(f"Ahoy, Captain! There are {len(cities)} wealthy settlements to go to:")
+    for city, values in cities.items():
+        print(f"{city} -> Population: {cities[city]['population']} citizens, Gold: {cities[city]['gold']} kg")
